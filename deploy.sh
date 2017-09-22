@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-deploy_repo=~/repos/deploy/coderstats.net
+deploy_repo=~/repos/deploy/coderstats.github.io
 
 logya gen
 cp -r deploy/* "$deploy_repo"
