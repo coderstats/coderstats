@@ -1,0 +1,70 @@
+User-agent: *
+Disallow: /info/*
+
+# 80legs
+User-agent: 008
+Disallow: /
+
+User-agent: AdsBot-Google
+Disallow: /
+
+user-agent: AhrefsBot
+disallow: /
+
+User-agent: aiHitBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: dotbot
+Disallow: /
+
+User-agent: ezooms
+Disallow: /
+
+User-agent: meanpathbot
+Disallow: /
+
+User-agent: NerdyBot
+Disallow: /
+
+User-Agent: panscient.com
+Disallow: /
+
+User-agent: proximic
+Disallow: /
+
+User-agent: naverbot
+Disallow: /
+
+User-agent: rogerbot
+Disallow: /
+
+User-agent: SandDollar
+Disallow: /
+
+User-agent: seznambot
+Disallow: /
+
+User-agent: sistrix
+Disallow: /
+
+User-agent: SMTBot
+Disallow: /
+
+# seoprofiler
+User-agent: spbot
+Disallow: /
+
+User-agent: SurveyBot
+Disallow: /
+
+User-agent: Telefonica
+Disallow: /
+
+User-agent: teoma
+Disallow: /
+
+User-agent: XoviBot
+Disallow: /

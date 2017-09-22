@@ -1,0 +1,18 @@
+nav {
+    background-color: $color4;
+    padding: .5em 0;
+    position: static;
+}
+
+nav .brand {
+    color: #fff;
+    font-size: 2em;
+    margin-left: .2em;
+    position: absolute;
+    text-decoration: none;
+    top: .35em;
+}
+
+nav .button {
+    margin-top: .2em;
+}

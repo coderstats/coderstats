@@ -1,0 +1,28 @@
+blockquote {
+    display:block;
+    padding: 1rem 0 0 0;
+    position: relative;
+}
+
+blockquote::before{
+    content: '\201C';
+
+    font-family: Georgia, serif;
+    font-size: 3rem;
+    font-weight: bold;
+    color: $color3;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+blockquote::after{
+    content: '';
+}
+
+blockquote p {
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    text-align: justify;
+}

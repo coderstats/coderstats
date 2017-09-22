@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="{{ description }}">
+<title>{{ title }}</title>
+<link rel="shortcut icon" href="/img/coderstats.png">
+<link rel="canonical" href="{{ canonical }}" />
+{% block styles %}{% endblock %}
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/compiled/style.css">
+</head>
+<body>
+{% block content %}{% endblock %}
+
+<footer class="container">
+<p><a href="/">CoderStats</a> is a free service that displays statistics for coders with public open source code repositories.<br>
+<a href="https://chrome.google.com/webstore/detail/necogepejonacpphmlmcagmbjaogpbng">Chrome Extension</a> • <a href="https://addons.mozilla.org/en-US/firefox/addon/coderstats/">Firefox Add-on</a> • <a href="https://teespring.com/stores/codershirts" title="T-Shirts, hoodies, mugs and stickers for coders">CoderShirts Store</a>
+</footer>
+
+{% block scripts %}
+<script src="//unpkg.com/vue@2.4.4/dist/vue.min.js"></script>
+<script src="//unpkg.com/vue-resource@1.3.4/dist/vue-resource.min.js"></script>
+<script src="//d3js.org/d3-collection.v1.min.js"></script>
+<script src="//d3js.org/d3-array.v1.min.js"></script>
+{% endblock %}
+</body>
+</html>

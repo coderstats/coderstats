@@ -1,0 +1,9 @@
+# Logya
+deploy/
+static/compiled/
+static/data/
+
+# nodejs
+.sass-cache/
+node_modules/
+package-lock.json

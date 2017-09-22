@@ -1,0 +1,53 @@
+$base-link-color: #0000ee;
+$base-link-hover-color: #0000ff;
+
+@import 'getbase/styles';
+@import 'palette';
+@import 'blockquote';
+
+body {
+    background-color: $color1;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+footer {
+    text-align: center;
+    font-size: .9em;
+}
+
+img {
+    max-width: 100%;
+}
+
+.box-search {
+    background-color: $color5;
+    border: none;
+    padding: 4em;
+}
+
+.logo {
+    background-image: url('/img/coderstats.png');
+    background-repeat: no-repeat;
+    padding-left: 50px;
+}
+
+.main {
+    background-color: #fff;
+}
+
+.padh {
+    padding: 0 1em;
+}
+
+.padv {
+    padding: 1em 0;
+}
+
+.user {
+    width: 9%;
+    margin-right: 1%;
+}

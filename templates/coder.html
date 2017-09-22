@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+<link rel="stylesheet" href="/compiled/coder.css">
+{% endblock %}
+
+{% block content %}
+<nav class="container-full clear"><div class="row">
+    <div class="col-4">
+        <a href="/"><img src="/img/coderstats.png"></a>
+        <span class="brand">CoderStats({{ username }})</span>
+    </div>
+    <div class="col-8" id="search">
+        <form @submit.prevent class="right">
+            <input id="username" type="text" placeholder="GitHub user name" v-model="username">
+            <button @click="coder" class="button">Get Stats</button>
+        </form>
+    </div>
+</nav></div>
+
+{% raw %}
+<div id="coder">
+    <div v-if="user" class="flex">
+        <div class="sidebar padh">
+            <header>
+                <h4>{{ user.name }}</h4>
+            </header>
+            <img :src="user.avatar_url" :alt="user.name" class="img-fluid">
+            <p>Joined GitHub {{ user.created_at|formatDate }}</p>
+            <a :href="'https://github.com/' + user.login" class="block"><i class="fa fa-github" aria-hidden="true"></i> {{ user.login }}</a>
+            <a v-if="user.blog" :href="user.blog | fixURL" class="block"><i class="fa fa-home" aria-hidden="true"></i> {{ user.blog | formatURL }}</a>
+            <span v-if="user.location" class="block"><i class="fa fa-globe" aria-hidden="true"></i> {{ user.location }}</span>
+            <span v-if="user.company" class="block"><i class="fa fa-money" aria-hidden="true"></i> {{ user.company }}</span>
+            <blockquote v-if="user.bio"><p>{{ user.bio }}</p></blockquote>
+        </div>
+        <div v-if="repos_pushed.length < 2" class="error">
+            {{ user.name }} has not pushed changes to enough public repositories to show any interesting data here.
+        </div>
+        <div v-else class="main">
+            <div class="flex boxes">
+                <div class="box-stat" title="The number of loaded repositories this user has pushed to.">
+                    <i class="fa fa-code" aria-hidden="true"></i> Pushed to repos
+                    <h4>{{ repos_pushed.length }}</h4>
+                </div>
+                <div class="box-stat" title="The number of different main languages in repositories this user has pushed to.">
+                    <i class="fa fa-language" aria-hidden="true"></i> Main languages
+                    <h4>{{ languages.length }}</h4>
+                </div>
+                <div class="box-stat" title="The sum of issues across repositories this user has pushed to.">
+                    <i class="fa fa-bug" aria-hidden="true"></i> Total issues
+                    <h4>{{ total_issues }}</h4>
+                </div>
+                <div class="box-stat" title="The sum of forks across repositories this user has pushed to.">
+                    <i class="fa fa-code-fork" aria-hidden="true"></i> Total forks
+                    <h4>{{ total_forks }}</h4>
+                </div>
+                <div class="box-stat" title="The sum of stars across repositories this user has pushed to.">
+                    <i class="fa fa-star" aria-hidden="true"></i> Total stars
+                    <h4>{{ total_stars }}</h4>
+                </div>
+                <div class="box-stat" title="The number of users who follow this user on GitHub">
+                    <i class="fa fa-user" aria-hidden="true"></i> Followers
+                    <h4>{{ user.followers }}</h4>
+                </div>
+                <div class="box-stat" title="The number of users this user follows on GitHub">
+                    <i class="fa fa-user" aria-hidden="true"></i> Following
+                    <h4>{{ user.following }}</h4>
+                </div>
+            </div>
+
+            <div class="padh">
+                <h2 id="summary">Summary</h2>
+                <p v-if="repos_pushed.length > 1">{{ user.name }} has {{ user.public_repos }} repositories on GitHub, the latest {{ repos.length }} with user activity were loaded from GitHub's web service for this evaluation. {{ user.name }} has pushed to <strong>{{ repos_pushed.length }}</strong> of these repositories.
+                    <span v-if="repos_pushed_ratio > .8">This is a high ratio congratulations!</span>
+                    <span v-else-if="repos_pushed_ratio < .4">This is a low ratio.</span>
+                </p>
+                <p v-if="languages.length > 1"><strong>{{ languages.length }}</strong> different main languages were identified across all repos pushed to. The main language is the one with the largest amount of code in a given repository, as identified by GitHub's <a href="https://github.com/github/linguist">linguist</a>.
+                    <span v-if="languages.length > 5">Assuming a basic level of proficiency in all these languages {{ user.name }} can be considered hyperpolyglot in the world of computer languages.</span>
+                    <strong>{{ languages[0].key }}</strong> occurs most frequently ‒ {{ languages[0].value }} times ‒ as the main repo language.
+                </p>
+                <p v-if="total_forks / repos_pushed.length > 20">The total number of forks across all pushed to repositories indicates that the GitHub projects {{ user.name }} contributes to are actually used by other people as well.</p>
+            </div>
+
+            <div class="padh">
+                <h2 id="rankings">Rankings</h2>
+                <div class="row">
+                    <div v-if="languages.length > 1" class="col-3">
+                        <h3>Languages</h3>
+                        <graph id="language-ranking" class="ct-major-third"></graph>
+                    </div>
+                    <div v-if="issues.length > 1" class="col-3">
+                        <h3>Issues</h3>
+                        <graph id="issues-ranking" class="ct-major-third"></graph>
+                    </div>
+                    <div v-if="forks.length > 1" class="col-3">
+                        <h3>Forks</h3>
+                        <graph id="forks-ranking" class="ct-major-third"></graph>
+                    </div>
+                    <div v-if="stars.length > 1" class="col-3">
+                        <h3>Stars</h3>
+                        <graph id="stars-ranking" class="ct-major-third"></graph>
+                    </div>
+                </div>
+            </div>
+
+            <div class="padh">
+                <h2 id="repos">Repositories</h2>
+                <table v-if="repos_pushed">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th @click="sortBy('name', 'string')" :class="{ active: sort_key == 'name' }">Name <span class="arrow" :class="order('name')"></span></th>
+                            <th @click="sortBy('language', 'string')" :class="{ active: sort_key == 'language' }">Language <span class="arrow" :class="order('language')"></span></th>
+                            <th class="text-right" @click="sortBy('created_at')" :class="{ active: sort_key == 'created_at' }">Created at <span class="arrow" :class="order('created_at')"></span></th>
+                            <th class="text-right" @click="sortBy('pushed_at')" :class="{ active: sort_key == 'pushed_at' }">Pushed at <span class="arrow" :class="order('pushed_at')"></span></th>
+                            <th class="text-right" @click="sortBy('open_issues_count')" :class="{ active: sort_key == 'open_issues_count' }">Issues <span class="arrow" :class="order('open_issues_count')"></span></th>
+                            <th class="text-right" @click="sortBy('forks_count')" :class="{ active: sort_key == 'forks_count' }">Forks <span class="arrow" :class="order('forks_count')"></span></th>
+                            <th class="text-right" @click="sortBy('watchers_count')" :class="{ active: sort_key == 'watchers_count' }">Stars <span class="arrow" :class="order('watchers_count')"></span></th>
+                            <th class="text-right" @click="sortBy('size')" :class="{ active: sort_key == 'size' }">Size <span class="arrow" :class="order('size')"></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(repo, idx) in repos_pushed" :title="repo.description">
+                            <td>{{ idx + 1}}</td>
+                            <td><strong><a v-bind:href="repo.html_url">{{ repo.name }}</a></strong> <i v-if="repo.fork" class="fa fa-code-fork" aria-hidden="true"></i></td>
+                            <td>{{ repo.language }}</td>
+                            <td class="text-right">{{ repo.created_at | formatDate }}</td>
+                            <td class="text-right">{{ repo.pushed_at | formatDate }}</td>
+                            <td class="text-right">{{ repo.open_issues_count }}</td>
+                            <td class="text-right">{{ repo.forks_count }}</td>
+                            <td class="text-right">{{ repo.watchers_count }}</td>
+                            <td class="text-right">{{ repo.size }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="#">↑</a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+{% endraw %}
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+<script src="/compiled/coder.js"></script>
+<script src="/compiled/search.js"></script>
+{% endblock %}

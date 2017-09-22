@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-full main">
+    <h1 class="logo">{{ title }}</h1>
+    <div class="box-search" id="search">
+        <form class="row" @submit.prevent>
+            <div class="col-10">
+                <input class="field" id="username" type="text" placeholder="GitHub user name" v-model="username">
+            </div>
+            <div class="col-2">
+                <button @click="coder" class="button">Get Stats</button>
+            </div>
+        </form>
+    </div>
+    <div v-if="events" class="padv" id="events">
+        {% raw %}
+        <h2>Recently active users</h2>
+        <div class="flex">
+            <div v-for="user in users.slice(0, 10)" class="user">
+                <a v-bind:href="'/github#' + user.key">
+                    <img :src="user.values[0].actor.avatar_url" :alt="user.key">
+                    <i class="fa fa-user" aria-hidden="true"></i> {{ user.key }}
+                </a>
+            </div>
+        </div>
+        {% endraw %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="/compiled/events.js"></script>
+<script src="/compiled/search.js"></script>
+{% endblock %}
