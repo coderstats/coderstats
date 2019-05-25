@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "coderstats.net",
   "keywords": [
-      "visualization",
-      "github"
+    "visualization",
+    "github"
   ],
   "author": {
     "name": "Ramiro Gómez",
@@ -12,16 +12,16 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
     "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.0",
+    "gulp-babel": "^7.0.1",
     "gulp-babel-minify": "^0.2.0",
-    "gulp-clean-css": "^3.8.0",
+    "gulp-clean-css": "^3.10.0",
     "gulp-concat": "^2.6.1",
-    "gulp-connect": "^5.0.0",
-    "gulp-sass": "^3.1.0",
-    "gulp-uglify": "^3.0.0"
+    "gulp-connect": "^5.7.0",
+    "gulp-sass": "^3.2.1",
+    "gulp-uglify": "^3.0.2"
   },
   "dependencies": {
     "getbase": "^3.5.1"

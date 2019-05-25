@@ -123,7 +123,11 @@
                     <tbody>
                         <tr v-for="(repo, idx) in repos_pushed" :title="repo.description">
                             <td>{{ idx + 1}}</td>
-                            <td><strong><a v-bind:href="repo.html_url">{{ repo.name }}</a></strong> <i v-if="repo.fork" class="fa fa-code-fork" aria-hidden="true"></i></td>
+                            <td>
+                                <strong><a v-bind:href="repo.html_url">{{ repo.name }}</a></strong>
+                                <i v-if="repo.fork" class="fa fa-code-fork" aria-hidden="true" title="Forked Repository"></i>
+                                <i v-if="repo.archived" class="fa fa-archive" aria-hidden="true" title="Archived Repository"></i>
+                            </td>
                             <td>{{ repo.language }}</td>
                             <td class="text-right">{{ repo.created_at | formatDate }}</td>
                             <td class="text-right">{{ repo.pushed_at | formatDate }}</td>
