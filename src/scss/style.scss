@@ -1,3 +1,5 @@
+$base-font-family: Roboto, sans-serif;
+$base-heading-font-family: Arial Black;
 $base-link-color: #0000ee;
 $base-link-hover-color: #0000ff;
 
@@ -6,7 +8,7 @@ $base-link-hover-color: #0000ff;
 @import 'blockquote';
 
 body {
-    background-color: $color1;
+    background-color: $color5;
 }
 
 a {
@@ -24,7 +26,7 @@ img {
 }
 
 .box-search {
-    background-color: $color5;
+    background-color: $color3;
     border: none;
     padding: 4em;
 }
@@ -37,6 +39,10 @@ img {
 
 .main {
     background-color: #fff;
+}
+
+.main h2 {
+    margin: 1rem 0;
 }
 
 .padh {

@@ -3,11 +3,11 @@
 @import 'table';
 
 #coder {
-    background-color: $color5;
+    background-color: $color4;
 }
 
 .box-stat {
-    color: $color3;
+    color: $color1;
     font-size: .8em;
     text-align: center;
     width: 12em;
@@ -19,17 +19,17 @@
 }
 
 .boxes {
-    background-color: $color1;
+    background-color: $color3;
     padding: 1em 0;
 }
 
 .boxes .box-stat:not(:last-child) {
-    border-right: 1px solid $color3;
+    border-right: 1px solid $color1;
     margin-right: 1px;
 }
 
 .ct-series-a .ct-bar {
-    stroke: $color5;
+    stroke: $color2;
 }
 
 .main {
