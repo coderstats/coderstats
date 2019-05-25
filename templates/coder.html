@@ -24,7 +24,7 @@
     <div v-if="user" class="flex">
         <div class="sidebar padh">
             <header>
-                <h4>{{ user.name }}</h4>
+                <h3>{{ user.name }}</h3>
             </header>
             <img :src="user.avatar_url" :alt="user.name" class="img-fluid">
             <p>Joined GitHub {{ user.created_at|formatDate }}</p>
