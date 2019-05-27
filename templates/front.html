@@ -8,19 +8,19 @@
     </div>
     <div class="box-search" id="search">
         <form class="row" @submit.prevent>
-            <div class="col-10">
+            <div class="col-12 col-7-m col-8-l col-10-xl">
                 <input class="field" id="username" type="text" placeholder="GitHub user name or organization" v-model="username">
             </div>
-            <div class="col-2">
+            <div class="col-12 col-5-m col-4-l col-2-xl">
                 <button @click="coder" class="button">Get Stats</button>
             </div>
         </form>
     </div>
     <div v-if="events" id="active-users" class="padb">
         <h2>Recently active users</h2>
-        <div class="flex">
+        <div class="row">
             <user-link
-                v-for="user in users.slice(0, 10)"
+                v-for="user in users.slice(0, 12)"
                 v-bind:login="user.key"
                 v-bind:avatar_url="user.values[0].actor.avatar_url"
             ></user-link>
@@ -28,9 +28,9 @@
     </div>
     <div v-if="users" id="followed-users" class="padb">
         <h2>Users with many followers</h2>
-        <div class="flex">
+        <div class="row">
             <user-link
-                v-for="user in users.slice(0, 10)"
+                v-for="user in users.slice(0, 12)"
                 v-bind:login="user.login"
                 v-bind:avatar_url="user.avatar_url"
             ></user-link>
@@ -38,9 +38,9 @@
     </div>
     <div v-if="users" id="most-repos-users" class="padb">
         <h2>Users with many repositories</h2>
-        <div class="flex">
+        <div class="row">
             <user-link
-                v-for="user in users.slice(0, 10)"
+                v-for="user in users.slice(0, 12)"
                 v-bind:login="user.login"
                 v-bind:avatar_url="user.avatar_url"
             ></user-link>
@@ -48,9 +48,9 @@
     </div>
     <div v-if="users" id="earliest-users" class="padb">
         <h2>Users with old accounts</h2>
-        <div class="flex">
+        <div class="row">
             <user-link
-                v-for="user in users.slice(0, 10)"
+                v-for="user in users.slice(0, 12)"
                 v-bind:login="user.login"
                 v-bind:avatar_url="user.avatar_url"
             ></user-link>

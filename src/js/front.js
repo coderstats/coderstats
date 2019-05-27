@@ -1,9 +1,9 @@
 Vue.component('user-link', {
     props: ['login', 'avatar_url'],
     template: `
-    <div class="user">
+    <div class="col-1-xl col-2-l col-4-m col-12">
         <a v-bind:href="'/github#' + login">
-            <img :src="avatar_url" :alt="login">
+            <img :src="avatar_url" :alt="login"/><br>
             <i class="fa fa-user" aria-hidden="true"></i> {{ login }}
         </a>
     </div>
