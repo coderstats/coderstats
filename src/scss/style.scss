@@ -27,15 +27,33 @@ img {
 }
 
 .box-search {
-    background-color: $color3;
-    border: none;
+    background-color: $color5;
     padding: 4em;
 }
+.box-search form {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.box-search input, .box-search button {
+    font-size: 2rem;
+    min-height: 4rem;
+}
+.box-search button {
+    min-width: 12rem;
+}
 
-.logo {
-    background-image: url('/img/coderstats.png');
-    background-repeat: no-repeat;
-    padding-left: 50px;
+.brand-front {
+    text-align: center;
+    padding: 2rem 0;
+}
+.brand-front h1 {
+    display: inline-block;
+    font-size: 4rem;
+    bottom: .3rem;
+    position: relative;
+}
+.brand-front img {
+    display: inline-block;
 }
 
 .main {
@@ -44,6 +62,10 @@ img {
 
 .main h2 {
     margin: 1rem 0;
+}
+
+.padb {
+    padding: 0 0 1em 0;
 }
 
 .padh {

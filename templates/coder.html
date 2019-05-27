@@ -85,19 +85,19 @@
             <div class="padh">
                 <h2 id="rankings">Rankings</h2>
                 <div class="row">
-                    <div v-if="languages.length > 1" class="col-3">
+                    <div v-if="languages.length > 1" class="col-6-m col-3-l">
                         <h3>Languages</h3>
                         <graph id="language-ranking" class="ct-major-third"></graph>
                     </div>
-                    <div v-if="issues.length > 1" class="col-3">
+                    <div v-if="issues.length > 1" class="col-6-m col-3-l">
                         <h3>Issues</h3>
                         <graph id="issues-ranking" class="ct-major-third"></graph>
                     </div>
-                    <div v-if="forks.length > 1" class="col-3">
+                    <div v-if="forks.length > 1" class="col-6-m col-3-l">
                         <h3>Forks</h3>
                         <graph id="forks-ranking" class="ct-major-third"></graph>
                     </div>
-                    <div v-if="stars.length > 1" class="col-3">
+                    <div v-if="stars.length > 1" class="col-6-m col-3-l">
                         <h3>Stars</h3>
                         <graph id="stars-ranking" class="ct-major-third"></graph>
                     </div>
@@ -140,10 +140,8 @@
                 </table>
                 <a href="#">↑</a>
             </div>
-
         </div>
     </div>
-
 </div>
 {% endraw %}
 {% endblock %}

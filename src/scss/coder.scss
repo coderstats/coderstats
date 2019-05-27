@@ -32,13 +32,8 @@
     stroke: $color2;
 }
 
-.main {
-    width: 88%;
-}
-
 .sidebar {
-    width: 12%;
-    font-size: .9em;
+    min-width: 200px;
 }
 
 .sidebar a {

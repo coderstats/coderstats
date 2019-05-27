@@ -2,18 +2,21 @@
 
 {% block content %}
 <div class="container-full main">
-    <h1 class="logo">{{ title }}</h1>
+    <div class="brand-front">
+        <img src="/img/coderstats.svg">
+        <h1>CoderStats</h1>
+    </div>
     <div class="box-search" id="search">
         <form class="row" @submit.prevent>
             <div class="col-10">
-                <input class="field" id="username" type="text" placeholder="GitHub user name" v-model="username">
+                <input class="field" id="username" type="text" placeholder="GitHub user name or organization" v-model="username">
             </div>
             <div class="col-2">
                 <button @click="coder" class="button">Get Stats</button>
             </div>
         </form>
     </div>
-    <div v-if="events" id="active-users">
+    <div v-if="events" id="active-users" class="padb">
         <h2>Recently active users</h2>
         <div class="flex">
             <user-link
@@ -23,7 +26,7 @@
             ></user-link>
         </div>
     </div>
-    <div v-if="users" id="followed-users">
+    <div v-if="users" id="followed-users" class="padb">
         <h2>Most followed users</h2>
         <div class="flex">
             <user-link
@@ -33,7 +36,7 @@
             ></user-link>
         </div>
     </div>
-    <div v-if="users" id="most-repos-users">
+    <div v-if="users" id="most-repos-users" class="padb">
         <h2>Users with most repositories</h2>
         <div class="flex">
             <user-link
@@ -43,7 +46,7 @@
             ></user-link>
         </div>
     </div>
-    <div v-if="users" id="earliest-users">
+    <div v-if="users" id="earliest-users" class="padb">
         <h2>Users with oldest accounts</h2>
         <div class="flex">
             <user-link
