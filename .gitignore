@@ -1,8 +1,12 @@
-# Logya
+# site
 archive/
 deploy/
 static/compiled/
 static/data/
+
+# src
+#src/scss/getbase
+src/scss/getbase4
 
 # nodejs
 .sass-cache/
