@@ -23,8 +23,7 @@ new Vue({
         }
     },
     created: function() {
-        // https://api.github.com/events
-        this.$http.get('/data/events.json').then(response => {
+        this.$http.get('https://api.github.com/events').then(response => {
             this.events = response.body;
         });
     }
