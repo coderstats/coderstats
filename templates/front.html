@@ -27,7 +27,7 @@
         </div>
     </div>
     <div v-if="users" id="followed-users" class="padb">
-        <h2>Most followed users</h2>
+        <h2>Users with many followers</h2>
         <div class="flex">
             <user-link
                 v-for="user in users.slice(0, 10)"
@@ -37,7 +37,7 @@
         </div>
     </div>
     <div v-if="users" id="most-repos-users" class="padb">
-        <h2>Users with most repositories</h2>
+        <h2>Users with many repositories</h2>
         <div class="flex">
             <user-link
                 v-for="user in users.slice(0, 10)"
@@ -47,7 +47,7 @@
         </div>
     </div>
     <div v-if="users" id="earliest-users" class="padb">
-        <h2>Users with oldest accounts</h2>
+        <h2>Users with old accounts</h2>
         <div class="flex">
             <user-link
                 v-for="user in users.slice(0, 10)"
