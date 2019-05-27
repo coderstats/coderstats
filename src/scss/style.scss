@@ -4,7 +4,20 @@ $base-heading-font-family: Arial Black;
 $base-link-color: #0000ee;
 $base-link-hover-color: #0000ff;
 
-@import 'getbase/styles';
+// Import Base & Modules
+@import "~@getbase/base/scss/index";
+@import "~@getbase/buttons/scss/index";
+@import "~@getbase/containers/scss/index";
+@import "~@getbase/forms/scss/index";
+@import "~@getbase/grid/scss/index";
+@import "~@getbase/tables/scss/index";
+@import "~@getbase/typography/scss/index";
+
+// Base Typography and Layout Helpers
+@import "~@getbase/typography-helpers/scss/index";
+@import "~@getbase/layout-helpers/scss/index";
+@import "~@getbase/layout-spacers/scss/index";
+
 @import 'palette';
 @import 'blockquote';
 
@@ -35,7 +48,7 @@ img {
     margin: 0 auto;
 }
 .box-search input, .box-search button {
-    font-size: 2rem;
+    font-size: 1.8rem;
     min-height: 4rem;
 }
 .box-search button {

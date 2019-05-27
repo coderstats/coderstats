@@ -4,7 +4,8 @@ var gulp = require('gulp'),
     cleanCSS = require('gulp-clean-css'),
     concat = require('gulp-concat'),
     spawn = require('child_process').spawn,
-    sass = require('gulp-sass');
+    sass = require('gulp-sass')
+    tildeImporter = require('node-sass-tilde-importer');
 
 var do_minify = true;
 
@@ -35,13 +36,13 @@ gulp.task('serve', function() {
 // Compile and copy scss styles
 gulp.task('scss', function () {
     gulp.src(paths.scss_coder)
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sass({importer: tildeImporter}).on('error', sass.logError))
         .pipe(cleanCSS())
         .pipe(concat('coder.css'))
         .pipe(gulp.dest(paths.compiled));
 
     return gulp.src(paths.scss_main)
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sass({importer: tildeImporter}).on('error', sass.logError))
         .pipe(cleanCSS())
         .pipe(concat('style.css'))
         .pipe(gulp.dest(paths.compiled));
