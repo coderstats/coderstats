@@ -5,7 +5,7 @@ static/compiled/
 static/data/
 
 # src
-#src/scss/getbase
+src/scss/getbase
 src/scss/getbase4
 
 # nodejs
