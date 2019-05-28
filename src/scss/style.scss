@@ -22,7 +22,7 @@ $base-link-hover-color: #0000ff;
 @import 'blockquote';
 
 body {
-    background-color: $color5;
+    background-color: #fff;
 }
 
 a {
@@ -33,6 +33,7 @@ a {
 footer {
     text-align: center;
     font-size: .9em;
+    background-color: $color5;
 }
 
 img {
@@ -78,15 +79,21 @@ img {
 }
 
 .padb {
-    padding: 0 0 1em 0;
+    padding-bottom: 1em;
+}
+
+.padt {
+    padding-top: 1em;
 }
 
 .padh {
-    padding: 0 1em;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 .padv {
-    padding: 1em 0;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 .user {
