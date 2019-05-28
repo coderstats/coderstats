@@ -7,11 +7,11 @@
 
 {% block content %}
 <nav class="container-full clear"><div class="row">
-    <div class="col-4">
+    <div class="col-12 col-4-xl col-4-l col-5-m">
         <a href="/"><img src="/img/coderstats.png"></a>
         <span class="brand">CoderStats({{ username }})</span>
     </div>
-    <div class="col-8" id="search">
+    <div class="col-12 col-8-xl col-8-l col-7-m" id="search">
         <form @submit.prevent class="right">
             <input id="username" type="text" placeholder="GitHub user name" v-model="username">
             <button @click="coder" class="button">Get Stats</button>
@@ -21,23 +21,25 @@
 
 {% raw %}
 <div id="coder">
-    <div v-if="user" class="flex">
-        <div class="sidebar padh">
-            <header>
-                <h3>{{ user.name }}</h3>
-            </header>
-            <img :src="user.avatar_url" :alt="user.name" class="img-fluid">
-            <p>Joined GitHub {{ user.created_at|formatDate }}</p>
-            <a :href="'https://github.com/' + user.login" class="block"><i class="fa fa-github" aria-hidden="true"></i> {{ user.login }}</a>
-            <a v-if="user.blog" :href="user.blog | fixURL" class="block"><i class="fa fa-home" aria-hidden="true"></i> {{ user.blog | formatURL }}</a>
-            <span v-if="user.location" class="block"><i class="fa fa-globe" aria-hidden="true"></i> {{ user.location }}</span>
-            <span v-if="user.company" class="block"><i class="fa fa-money" aria-hidden="true"></i> {{ user.company }}</span>
-            <blockquote v-if="user.bio"><p>{{ user.bio }}</p></blockquote>
+    <div v-if="user" class="row">
+        <div class="col-12 col-2-xl col-2-l col-4-m">
+            <div class="padh">
+                <header>
+                    <h3>{{ user.name }}</h3>
+                </header>
+                <img :src="user.avatar_url" :alt="user.name" class="img-fluid">
+                <p>Joined GitHub {{ user.created_at|formatDate }}</p>
+                <a :href="'https://github.com/' + user.login" class="block"><i class="fa fa-github" aria-hidden="true"></i> {{ user.login }}</a>
+                <a v-if="user.blog" :href="user.blog | fixURL" class="block"><i class="fa fa-home" aria-hidden="true"></i> {{ user.blog | formatURL }}</a>
+                <span v-if="user.location" class="block"><i class="fa fa-globe" aria-hidden="true"></i> {{ user.location }}</span>
+                <span v-if="user.company" class="block"><i class="fa fa-money" aria-hidden="true"></i> {{ user.company }}</span>
+                <blockquote v-if="user.bio"><p>{{ user.bio }}</p></blockquote>
+            </div>
         </div>
-        <div v-if="repos_pushed.length < 2" class="error">
+        <div v-if="repos_pushed.length < 2" class="col-12 error">
             {{ user.name }} has not pushed changes to enough public repositories to show any interesting data here.
         </div>
-        <div v-else class="main">
+        <div v-else class="col-12 col-10-xl col-10-l col-8-m no-padding main">
             <div class="flex boxes">
                 <div class="box-stat" title="The number of loaded repositories this user has pushed to.">
                     <i class="fa fa-code" aria-hidden="true"></i> Pushed to repos

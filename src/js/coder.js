@@ -1,4 +1,4 @@
-const DEV = 0;
+const DEV = 1;
 
 let bar_options = {
     axisX: { onlyInteger: true },
