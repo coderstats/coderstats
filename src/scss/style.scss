@@ -21,10 +21,6 @@ $base-link-hover-color: #0000ff;
 @import 'palette';
 @import 'blockquote';
 
-body {
-    background-color: #fff;
-}
-
 a {
     cursor: pointer;
     text-decoration: none;
@@ -80,10 +76,6 @@ img {
 
 .padb {
     padding-bottom: 1em;
-}
-
-.padt {
-    padding-top: 1em;
 }
 
 .padh {
