@@ -14,8 +14,9 @@ if (document.location.hash) {
     document.location.href = '/';
 }
 // Set these values here because they are outside of vue's scope.
-document.title = `CoderStats(${github_user})`;
-document.getElementsByClassName('brand')[0].textContent = document.title;
+let short_title = `CoderStats(${github_user})`
+document.title = document.title.replace('CoderStats', short_title);
+document.getElementsByClassName('brand')[0].textContent = short_title;
 
 let url_user = `https://api.github.com/users/${github_user}`,
     url_repos = `${url_user}/repos?sort=pushed&per_page=100`,
