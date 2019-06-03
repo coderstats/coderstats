@@ -57,6 +57,36 @@ let coder = new Vue({
         forks: function() {
             return this.repoRanking('forks_count');
         },
+        repo_types: function() {
+            let labels = [];
+            let values = [];
+            let types = {
+                active_sources: 0,
+                archived: 0,
+                disabled: 0,
+                forked: 0,
+                mirrors: 0
+            };
+            for (let repo of this.repos_pushed) {
+                if (repo.archived)
+                    types.archived++;
+                else if (repo.disabled)
+                    types.disabled++;
+                else if (repo.fork)
+                    types.forked++;
+                else if (repo.mirror)
+                    types.mirrors++;
+                else
+                    types.active_sources++;
+            }
+            for (let [label, value] of Object.entries(types)) {
+                if (value > 0) {
+                    labels.push(label);
+                    values.push(value);
+                }
+            }
+            return {labels: labels, values: values};
+        },
         stars: function() {
             return this.repoRanking('stargazers_count');
         },
@@ -99,6 +129,10 @@ let coder = new Vue({
         this.rankingGraph(this.issues.slice(0, 10), 'open_issues_count', '#issues-ranking');
         this.rankingGraph(this.forks.slice(0, 10), 'forks_count', '#forks-ranking');
         this.rankingGraph(this.stars.slice(0, 10), 'stargazers_count', '#stars-ranking');
+
+        new Chartist.Pie('#repo-types-chart', {
+            labels: this.repo_types.labels.map(d => d.replace('_', ' ')),
+            series: this.repo_types.values});
     },
     methods: {
         fetchRepos: function() {

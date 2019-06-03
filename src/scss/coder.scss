@@ -32,6 +32,30 @@
     stroke: $color2;
 }
 
+.ct-chart-pie {
+    min-height: 250px;
+}
+
+.ct-chart-pie .ct-label {
+    fill: #222;
+}
+
+.ct-series-a .ct-slice-pie {
+    fill:rgb(141,211,199)
+}
+.ct-series-b .ct-slice-pie {
+    fill:rgb(255,255,179)
+}
+.ct-series-c .ct-slice-pie {
+    fill:rgb(190,186,218)
+}
+.ct-series-d .ct-slice-pie {
+    fill:rgb(251,128,114)
+}
+.ct-series-e .ct-slice-pie {
+    fill:rgb(128,177,211)
+}
+
 .meta {
     background-color: $color4;
 }

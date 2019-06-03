@@ -22,7 +22,7 @@
 {% raw %}
 <div id="coder">
     <div v-if="user" class="row">
-        <div class="col-12 col-2-xl col-2-l col-4-m meta">
+        <div class="col-12 col-2-xl col-3-l col-4-m meta">
             <div class="padh">
                 <header>
                     <h3>{{ user.name }}</h3>
@@ -34,12 +34,17 @@
                 <span v-if="user.location" class="block"><i class="fa fa-globe" aria-hidden="true"></i> {{ user.location }}</span>
                 <span v-if="user.company" class="block"><i class="fa fa-money" aria-hidden="true"></i> {{ user.company }}</span>
                 <blockquote v-if="user.bio"><p>{{ user.bio }}</p></blockquote>
+
+                <div v-if="repo_types" class="padv">
+                    <h3>Repo types</h3>
+                    <div id="repo-types-chart"></div>
+                </div>
             </div>
         </div>
         <div v-if="repos_pushed.length < 2" class="col-12 error">
             {{ user.name }} has not pushed changes to enough public repositories to show any interesting data here.
         </div>
-        <div v-else class="col-12 col-10-xl col-10-l col-8-m no-padding main">
+        <div v-else class="col-12 col-10-xl col-9-l col-8-m no-padding main">
             <div class="flex flex-wrap boxes">
                 <div class="box-stat" title="The number of loaded repositories this user has pushed to.">
                     <i class="fa fa-code" aria-hidden="true"></i> Pushed to repos
