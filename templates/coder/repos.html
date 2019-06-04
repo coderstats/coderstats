@@ -2,7 +2,6 @@
 <table>
     <thead>
         <tr>
-            <th>#</th>
             <th @click="sortBy('name', 'string')" :class="{ active: sort_key == 'name' }">Name <span class="arrow" :class="order('name')"></span></th>
             <th @click="sortBy('language', 'string')" :class="{ active: sort_key == 'language' }">Language <span class="arrow" :class="order('language')"></span></th>
             <th class="text-right" @click="sortBy('created_at')" :class="{ active: sort_key == 'created_at' }">Created at <span class="arrow" :class="order('created_at')"></span></th>
@@ -14,8 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr v-for="(repo, idx) in repos_pushed" :title="repo.description">
-            <td>{{ idx + 1}}</td>
+        <tr v-for="repo in repos_pushed" :title="repo.description">
             <td>
                 <strong><a v-bind:href="repo.html_url">{{ repo.name }}</a></strong>
                 <i v-if="repo.fork" class="fa fa-code-fork" aria-hidden="true" title="Forked Repository"></i>
