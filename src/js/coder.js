@@ -20,16 +20,20 @@ document.getElementsByClassName('brand')[0].textContent = short_title;
 
 let url_user = `https://api.github.com/users/${github_user}`,
     url_repos = `${url_user}/repos?sort=pushed&per_page=100`,
+    url_issues = `https://api.github.com/search/issues?q=user:${github_user}&sort=updated&order=desc`,
     months_short = 'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec'.split(' ');
 
 if (DEV) {
     url_user = '/data/user.json';
     url_repos = '/data/repos.json';
+    url_issues = '/data/issues.json';
 }
 
 let coder = new Vue({
     el: '#coder',
     data: {
+        activetab: 'repos',
+        latest_issues: null,
         repos: [],
         response: {},
         sort_orders: {},
@@ -135,6 +139,12 @@ let coder = new Vue({
             series: this.repo_types.values});
     },
     methods: {
+        fetchIssues: function() {
+            this.$http.get(url_issues).then(response => {
+                this.response.issues = response;
+                this.latest_issues = response.body.items;
+            });
+        },
         fetchRepos: function() {
             this.$http.get(url_repos).then(response => {
                 this.response.repos = response;
@@ -164,11 +174,17 @@ let coder = new Vue({
             return this.repos_pushed.filter(d => d[property])
                 .sort((a, b) => b[property] - a[property]);
         },
-        sortBy: function(key, type='number') {
+        showTab: function(name) {
+            this.activetab = name;
+            if (!this.latest_issues) {
+                this.fetchIssues();
+            }
+        },
+        sortBy: function(key, type='number', property='repos') {
             let default_value = type === 'string' ? '' : 0;
             this.sort_key = key;
             this.sort_orders[key] = (this.sort_orders[key] || 1) * -1;
-            this.repos.sort((a, b) => {
+            this[property].sort((a, b) => {
                 let x = a[key] || default_value,
                     y = b[key] || default_value;
                 if (type === 'string') {

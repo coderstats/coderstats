@@ -59,3 +59,12 @@
 .meta {
     background-color: $color4;
 }
+
+// tabs
+.button.active {
+    background-color: $color3;
+}
+
+.content {
+    border-top: 1px solid $color5;
+}

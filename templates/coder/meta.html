@@ -1,0 +1,19 @@
+{% raw %}
+<div class="padh">
+    <header>
+        <h3>{{ user.name }}</h3>
+    </header>
+    <img :src="user.avatar_url" :alt="user.name" class="img-fluid">
+    <p>Joined GitHub {{ user.created_at|formatDate }}</p>
+    <a :href="'https://github.com/' + user.login" class="block"><i class="fa fa-github" aria-hidden="true"></i> {{ user.login }}</a>
+    <a v-if="user.blog" :href="user.blog | fixURL" class="block"><i class="fa fa-home" aria-hidden="true"></i> {{ user.blog | formatURL }}</a>
+    <span v-if="user.location" class="block"><i class="fa fa-globe" aria-hidden="true"></i> {{ user.location }}</span>
+    <span v-if="user.company" class="block"><i class="fa fa-money" aria-hidden="true"></i> {{ user.company }}</span>
+    <blockquote v-if="user.bio"><p>{{ user.bio }}</p></blockquote>
+
+    <div v-if="repo_types" class="padv">
+        <h3>Repo types</h3>
+        <div id="repo-types-chart"></div>
+    </div>
+</div>
+{% endraw %}

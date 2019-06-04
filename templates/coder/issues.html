@@ -1,0 +1,24 @@
+{% raw %}
+<table>
+    <thead>
+        <tr>
+            <th @click="sortBy('repository_url', 'string', 'latest_issues')" :class="{ active: sort_key == 'repository_url' }">Repo <span class="arrow" :class="order('repository_url')"></span></th>
+            <th>Title</th>
+            <th @click="sortBy('state', 'string', 'latest_issues')" :class="{ active: sort_key == 'state' }">State <span class="arrow" :class="order('state')"></span></th>
+            <th>Created by</th>
+            <th class="text-right" @click="sortBy('created_at', 'string', 'latest_issues')" :class="{ active: sort_key == 'created_at' }">Created at <span class="arrow" :class="order('created_at')"></span></th>
+            <th class="text-right" @click="sortBy('updated_at', 'string', 'latest_issues')" :class="{ active: sort_key == 'updated_at' }">Latest update <span class="arrow" :class="order('updated_at')"></span></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr v-for="issue in latest_issues">
+            <td><a :href="issue.repository_url">{{ issue.repository_url.split('/').slice(-2).join('/') }}</a></td>
+            <td><a :href="issue.html_url">{{ issue.title }}</a></td>
+            <td>{{ issue.state }}</td>
+            <td><a :href="issue.user.url">{{ issue.user.login }}</a></td>
+            <td class="text-right">{{ issue.created_at | formatDate }}</td>
+            <td class="text-right">{{ issue.updated_at | formatDate }}</td>
+        </tr>
+    </tbody>
+</table>
+{% endraw %}
