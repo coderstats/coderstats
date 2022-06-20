@@ -40,10 +40,5 @@
     "@getbase/tables": "^4.1.0",
     "@getbase/typography": "^4.1.1",
     "@getbase/typography-helpers": "^4.1.0"
-  },
-  "sass": {
-    "includePaths": [
-      "./node_modules"
-    ]
   }
 }
