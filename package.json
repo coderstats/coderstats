@@ -3,27 +3,33 @@
   "version": "0.0.1",
   "description": "coderstats.net",
   "keywords": [
-      "visualization",
-      "github"
+    "visualization",
+    "github"
   ],
   "author": {
     "name": "Ramiro Gómez",
-    "url": "http://ramiro.org"
+    "url": "https://ramiro.org"
+  },
+  "scripts": {
+    "build:scripts": "babel src/js --out-dir static/compiled --minified --no-comments",
+    "build:style-coder": "sass src/scss/coder.scss static/compiled/coder.css --style compressed",
+    "build:style-main": "sass src/scss/style.scss static/compiled/style.css --style compressed",
+    "watch:scripts": "nodemon -e js -w src/js -x 'npm run build:scripts'",
+    "watch:styles": "nodemon -e css -w src/scss -x 'npm run build:style-coder; npm run build:style-main'",
+    "build": "run-p build:*",
+    "watch": "run-p watch:*"
   },
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.0",
-    "gulp-babel-minify": "^0.2.0",
-    "gulp-clean-css": "^3.8.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-connect": "^5.0.0",
-    "gulp-sass": "^3.1.0",
-    "gulp-uglify": "^3.0.0"
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.5",
+    "@babel/preset-env": "^7.18.2",
+    "babel-loader": "^8.2.5",
+    "nodemon": "^2.0.16",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.52.3"
   },
   "dependencies": {
-    "getbase": "^3.5.1"
+    "@getbase/base": "^5.2.0"
   }
 }

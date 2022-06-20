@@ -1,3 +1,3 @@
 # README
 
-Source files for [coderstats.net](http://coderstats.net/).
+Source files for [coderstats.net](https://coderstats.net/).

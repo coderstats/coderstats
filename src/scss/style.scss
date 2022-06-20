@@ -1,7 +1,7 @@
 $base-link-color: #0000ee;
 $base-link-hover-color: #0000ff;
 
-@import 'getbase/styles';
+@import '../../node_modules/@getbase/base/scss/index';
 @import 'palette';
 @import 'blockquote';
 
