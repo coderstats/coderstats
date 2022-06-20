@@ -1,5 +1,5 @@
 nav {
-    background-color: $color4;
+    background-color: $color1;
     padding: .5em 0;
     position: static;
 }
@@ -14,5 +14,7 @@ nav .brand {
 }
 
 nav .button {
-    margin-top: .2em;
+    margin: .2rem 0 0 .2rem;
+    padding: .4rem 1rem;
+    display: inline;
 }

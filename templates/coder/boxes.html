@@ -1,0 +1,32 @@
+{% raw %}
+<div class="flex flex-wrap boxes">
+    <div class="box-stat" title="The number of loaded repositories this user has pushed to.">
+        <i class="fa fa-code" aria-hidden="true"></i> Pushed to repos
+        <h4>{{ repos_pushed.length }}</h4>
+    </div>
+    <div class="box-stat" title="The number of different main languages in repositories this user has pushed to.">
+        <i class="fa fa-language" aria-hidden="true"></i> Main languages
+        <h4>{{ languages.length }}</h4>
+    </div>
+    <div class="box-stat" title="The sum of issues across repositories this user has pushed to.">
+        <i class="fa fa-bug" aria-hidden="true"></i> Total issues
+        <h4>{{ total_issues }}</h4>
+    </div>
+    <div class="box-stat" title="The sum of forks across repositories this user has pushed to.">
+        <i class="fa fa-code-fork" aria-hidden="true"></i> Total forks
+        <h4>{{ total_forks }}</h4>
+    </div>
+    <div class="box-stat" title="The sum of stars across repositories this user has pushed to.">
+        <i class="fa fa-star" aria-hidden="true"></i> Total stars
+        <h4>{{ total_stars }}</h4>
+    </div>
+    <div class="box-stat" title="The number of users who follow this user on GitHub">
+        <i class="fa fa-user" aria-hidden="true"></i> Followers
+        <h4>{{ user.followers }}</h4>
+    </div>
+    <div class="box-stat" title="The number of users this user follows on GitHub">
+        <i class="fa fa-user" aria-hidden="true"></i> Following
+        <h4>{{ user.following }}</h4>
+    </div>
+</div>
+{% endraw %}

@@ -6,7 +6,7 @@ th {
 }
 
 th.active {
-    color: $color4;
+    color: $color2;
 }
 
 th.active .arrow {
@@ -25,11 +25,11 @@ th.active .arrow {
 .arrow.asc {
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
-    border-bottom: 4px solid $color4;
+    border-bottom: 4px solid $color1;
 }
 
 .arrow.dsc {
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
-    border-top: 4px solid $color4;
+    border-top: 4px solid $color1;
 }

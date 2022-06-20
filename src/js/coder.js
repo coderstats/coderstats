@@ -14,21 +14,26 @@ if (document.location.hash) {
     document.location.href = '/';
 }
 // Set these values here because they are outside of vue's scope.
-document.title = `CoderStats(${github_user})`;
-document.getElementsByClassName('brand')[0].textContent = document.title;
+let short_title = `CoderStats(${github_user})`
+document.title = document.title.replace('CoderStats', short_title);
+document.getElementsByClassName('brand')[0].textContent = short_title;
 
 let url_user = `https://api.github.com/users/${github_user}`,
     url_repos = `${url_user}/repos?sort=pushed&per_page=100`,
+    url_issues = `https://api.github.com/search/issues?q=user:${github_user}&sort=updated&order=desc`,
     months_short = 'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec'.split(' ');
 
 if (DEV) {
     url_user = '/data/user.json';
     url_repos = '/data/repos.json';
+    url_issues = '/data/issues.json';
 }
 
 let coder = new Vue({
     el: '#coder',
     data: {
+        activetab: 'repos',
+        latest_issues: null,
         repos: [],
         response: {},
         sort_orders: {},
@@ -55,6 +60,36 @@ let coder = new Vue({
         },
         forks: function() {
             return this.repoRanking('forks_count');
+        },
+        repo_types: function() {
+            let labels = [];
+            let values = [];
+            let types = {
+                active_sources: 0,
+                archived: 0,
+                disabled: 0,
+                forked: 0,
+                mirrors: 0
+            };
+            for (let repo of this.repos_pushed) {
+                if (repo.archived)
+                    types.archived++;
+                else if (repo.disabled)
+                    types.disabled++;
+                else if (repo.fork)
+                    types.forked++;
+                else if (repo.mirror)
+                    types.mirrors++;
+                else
+                    types.active_sources++;
+            }
+            for (let [label, value] of Object.entries(types)) {
+                if (value > 0) {
+                    labels.push(label);
+                    values.push(value);
+                }
+            }
+            return {labels: labels, values: values};
         },
         stars: function() {
             return this.repoRanking('stargazers_count');
@@ -98,8 +133,18 @@ let coder = new Vue({
         this.rankingGraph(this.issues.slice(0, 10), 'open_issues_count', '#issues-ranking');
         this.rankingGraph(this.forks.slice(0, 10), 'forks_count', '#forks-ranking');
         this.rankingGraph(this.stars.slice(0, 10), 'stargazers_count', '#stars-ranking');
+
+        new Chartist.Pie('#repo-types-chart', {
+            labels: this.repo_types.labels.map(d => d.replace('_', ' ')),
+            series: this.repo_types.values});
     },
     methods: {
+        fetchIssues: function() {
+            this.$http.get(url_issues).then(response => {
+                this.response.issues = response;
+                this.latest_issues = response.body.items;
+            });
+        },
         fetchRepos: function() {
             this.$http.get(url_repos).then(response => {
                 this.response.repos = response;
@@ -129,11 +174,17 @@ let coder = new Vue({
             return this.repos_pushed.filter(d => d[property])
                 .sort((a, b) => b[property] - a[property]);
         },
-        sortBy: function(key, type='number') {
+        showTab: function(name) {
+            this.activetab = name;
+            if (!this.latest_issues) {
+                this.fetchIssues();
+            }
+        },
+        sortBy: function(key, type='number', property='repos') {
             let default_value = type === 'string' ? '' : 0;
             this.sort_key = key;
             this.sort_orders[key] = (this.sort_orders[key] || 1) * -1;
-            this.repos.sort((a, b) => {
+            this[property].sort((a, b) => {
                 let x = a[key] || default_value,
                     y = b[key] || default_value;
                 if (type === 'string') {

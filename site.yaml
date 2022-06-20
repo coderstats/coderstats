@@ -1,9 +1,8 @@
 # General settings that will be available in templates.
 site:
-    base_url: http://localhost:8080
-    disqus_shortname: null
-    author: Author Name
-    brand: Brand Name
+    base_url: https://coderstats.net
+    author: Ramiro Gómez
+    brand: CoderStats
 
 
 # Settings that affect collections in the document index. Top-level keys of

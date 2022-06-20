@@ -1,0 +1,32 @@
+{% raw %}
+<table>
+    <thead>
+        <tr>
+            <th @click="sortBy('name', 'string')" :class="{ active: sort_key == 'name' }">Name <span class="arrow" :class="order('name')"></span></th>
+            <th @click="sortBy('language', 'string')" :class="{ active: sort_key == 'language' }">Language <span class="arrow" :class="order('language')"></span></th>
+            <th class="text-right" @click="sortBy('created_at')" :class="{ active: sort_key == 'created_at' }">Created at <span class="arrow" :class="order('created_at')"></span></th>
+            <th class="text-right" @click="sortBy('pushed_at')" :class="{ active: sort_key == 'pushed_at' }">Pushed at <span class="arrow" :class="order('pushed_at')"></span></th>
+            <th class="text-right" @click="sortBy('open_issues_count')" :class="{ active: sort_key == 'open_issues_count' }">Issues <span class="arrow" :class="order('open_issues_count')"></span></th>
+            <th class="text-right" @click="sortBy('forks_count')" :class="{ active: sort_key == 'forks_count' }">Forks <span class="arrow" :class="order('forks_count')"></span></th>
+            <th class="text-right" @click="sortBy('watchers_count')" :class="{ active: sort_key == 'watchers_count' }">Stars <span class="arrow" :class="order('watchers_count')"></span></th>
+            <th class="text-right" @click="sortBy('size')" :class="{ active: sort_key == 'size' }">Size <span class="arrow" :class="order('size')"></span></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr v-for="repo in repos_pushed" :title="repo.description">
+            <td>
+                <strong><a v-bind:href="repo.html_url">{{ repo.name }}</a></strong>
+                <i v-if="repo.fork" class="fa fa-code-fork" aria-hidden="true" title="Forked Repository"></i>
+                <i v-if="repo.archived" class="fa fa-archive" aria-hidden="true" title="Archived Repository"></i>
+            </td>
+            <td>{{ repo.language }}</td>
+            <td class="text-right">{{ repo.created_at | formatDate }}</td>
+            <td class="text-right">{{ repo.pushed_at | formatDate }}</td>
+            <td class="text-right">{{ repo.open_issues_count }}</td>
+            <td class="text-right">{{ repo.forks_count }}</td>
+            <td class="text-right">{{ repo.watchers_count }}</td>
+            <td class="text-right">{{ repo.size }}</td>
+        </tr>
+    </tbody>
+</table>
+{% endraw %}

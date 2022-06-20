@@ -1,0 +1,14 @@
+{% raw %}
+<div class="padh">
+    <h2 id="summary">Summary</h2>
+    <p v-if="repos_pushed.length > 1">{{ user.name }} has {{ user.public_repos }} repositories on GitHub, the latest {{ repos.length }} with user activity were loaded from GitHub's web service for this evaluation. {{ user.name }} has pushed to <strong>{{ repos_pushed.length }}</strong> of these repositories.
+        <span v-if="repos_pushed_ratio > .8">This is a high ratio congratulations!</span>
+        <span v-else-if="repos_pushed_ratio < .4">This is a low ratio.</span>
+    </p>
+    <p v-if="languages.length > 1"><strong>{{ languages.length }}</strong> different main languages were identified across all repos pushed to. The main language is the one with the largest amount of code in a given repository, as identified by GitHub's <a href="https://github.com/github/linguist">linguist</a>.
+        <span v-if="languages.length > 5">Assuming a basic level of proficiency in all these languages {{ user.name }} can be considered hyperpolyglot in the world of computer languages.</span>
+        <strong>{{ languages[0].key }}</strong> occurs most frequently ‒ {{ languages[0].value }} times ‒ as the main repo language.
+    </p>
+    <p v-if="total_forks / repos_pushed.length > 20">The total number of forks across all pushed to repositories indicates that the GitHub projects {{ user.name }} contributes to are actually used by other people.</p>
+</div>
+{% endraw %}

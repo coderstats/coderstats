@@ -2,35 +2,65 @@
 
 {% block content %}
 <div class="container-full main">
-    <h1 class="logo">{{ title }}</h1>
+    <div class="brand-front">
+        <img src="/img/coderstats.svg">
+        <h1>CoderStats</h1>
+    </div>
     <div class="box-search" id="search">
         <form class="row" @submit.prevent>
-            <div class="col-10">
-                <input class="field" id="username" type="text" placeholder="GitHub user name" v-model="username">
+            <div class="col-12 col-7-m col-8-l col-10-xl">
+                <input class="field" id="username" type="text" placeholder="GitHub user name or organization" v-model="username">
             </div>
-            <div class="col-2">
+            <div class="col-12 col-5-m col-4-l col-2-xl">
                 <button @click="coder" class="button">Get Stats</button>
             </div>
         </form>
     </div>
-    <div v-if="events" class="padv" id="events">
-        {% raw %}
+    <div v-if="events" id="active-users" class="padb">
         <h2>Recently active users</h2>
-        <div class="flex">
-            <div v-for="user in users.slice(0, 10)" class="user">
-                <a v-bind:href="'/github#' + user.key">
-                    <img :src="user.values[0].actor.avatar_url" :alt="user.key">
-                    <i class="fa fa-user" aria-hidden="true"></i> {{ user.key }}
-                </a>
-            </div>
+        <div class="row">
+            <user-link
+                v-for="user in users.slice(0, 12)"
+                v-bind:login="user.key"
+                v-bind:avatar_url="user.values[0].actor.avatar_url"
+            ></user-link>
         </div>
-        {% endraw %}
+    </div>
+    <div v-if="users" id="followed-users" class="padb">
+        <h2>Users with many followers</h2>
+        <div class="row">
+            <user-link
+                v-for="user in users.slice(0, 12)"
+                v-bind:login="user.login"
+                v-bind:avatar_url="user.avatar_url"
+            ></user-link>
+        </div>
+    </div>
+    <div v-if="users" id="most-repos-users" class="padb">
+        <h2>Users with many repositories</h2>
+        <div class="row">
+            <user-link
+                v-for="user in users.slice(0, 12)"
+                v-bind:login="user.login"
+                v-bind:avatar_url="user.avatar_url"
+            ></user-link>
+        </div>
+    </div>
+    <div v-if="users" id="earliest-users" class="padb">
+        <h2>Users with old accounts</h2>
+        <div class="row">
+            <user-link
+                v-for="user in users.slice(0, 12)"
+                v-bind:login="user.login"
+                v-bind:avatar_url="user.avatar_url"
+            ></user-link>
+        </div>
     </div>
 </div>
 {% endblock %}
 
 {% block scripts %}
 {{ super() }}
-<script src="/compiled/events.js"></script>
+<script src="/compiled/front.js"></script>
 <script src="/compiled/search.js"></script>
 {% endblock %}

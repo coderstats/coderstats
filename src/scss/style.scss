@@ -1,13 +1,25 @@
+$base-font-family: Roboto, Helvetica, sans-serif;
+$base-font-size: 17;
+$base-heading-font-family: Arial Black;
 $base-link-color: #0000ee;
 $base-link-hover-color: #0000ff;
 
-@import '../../node_modules/@getbase/base/scss/index';
+// Import Base & Modules
+@import "../../node_modules/@getbase/base/scss/index";
+@import "../../node_modules/@getbase/buttons/scss/index";
+@import "../../node_modules/@getbase/containers/scss/index";
+@import "../../node_modules/@getbase/forms/scss/index";
+@import "../../node_modules/@getbase/grid/scss/index";
+@import "../../node_modules/@getbase/tables/scss/index";
+@import "../../node_modules/@getbase/typography/scss/index";
+
+// Base Typography and Layout Helpers
+@import "../../node_modules/@getbase/typography-helpers/scss/index";
+@import "../../node_modules/@getbase/layout-helpers/scss/index";
+@import "../../node_modules/@getbase/layout-spacers/scss/index";
+
 @import 'palette';
 @import 'blockquote';
-
-body {
-    background-color: $color1;
-}
 
 a {
     cursor: pointer;
@@ -17,6 +29,7 @@ a {
 footer {
     text-align: center;
     font-size: .9em;
+    background-color: $color5;
 }
 
 img {
@@ -25,26 +38,54 @@ img {
 
 .box-search {
     background-color: $color5;
-    border: none;
     padding: 4em;
 }
+.box-search form {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.box-search input, .box-search button {
+    font-size: 1.8rem;
+    min-height: 4rem;
+}
+.box-search button {
+    min-width: 12rem;
+}
 
-.logo {
-    background-image: url('/img/coderstats.png');
-    background-repeat: no-repeat;
-    padding-left: 50px;
+.brand-front {
+    text-align: center;
+    padding: 2rem 0;
+}
+.brand-front h1 {
+    display: inline-block;
+    font-size: 4rem;
+    bottom: .3rem;
+    position: relative;
+}
+.brand-front img {
+    display: inline-block;
 }
 
 .main {
     background-color: #fff;
 }
 
+.main h2 {
+    margin: 1rem 0;
+}
+
+.padb {
+    padding-bottom: 1em;
+}
+
 .padh {
-    padding: 0 1em;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 .padv {
-    padding: 1em 0;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 .user {
