@@ -4,22 +4,25 @@ $base-heading-font-family: Arial Black;
 $base-link-color: #0000ee;
 $base-link-hover-color: #0000ff;
 
-// Import Base & Modules
-@import "../../node_modules/@getbase/base/scss/index";
-@import "../../node_modules/@getbase/buttons/scss/index";
-@import "../../node_modules/@getbase/containers/scss/index";
-@import "../../node_modules/@getbase/forms/scss/index";
-@import "../../node_modules/@getbase/grid/scss/index";
-@import "../../node_modules/@getbase/tables/scss/index";
-@import "../../node_modules/@getbase/typography/scss/index";
+/* Import Base */
+@import "../../node_modules/@getbase/base/scss/_mixins";
+@import "../../node_modules/@getbase/base/scss/core";
 
-// Base Typography and Layout Helpers
-@import "../../node_modules/@getbase/typography-helpers/scss/index";
-@import "../../node_modules/@getbase/layout-helpers/scss/index";
-@import "../../node_modules/@getbase/layout-spacers/scss/index";
+/* Import Base Common */
+@import "../../node_modules/@getbase/base/scss/code";
+@import "../../node_modules/@getbase/base/scss/forms";
+@import "../../node_modules/@getbase/base/scss/tables";
+@import "../../node_modules/@getbase/base/scss/typography";
+@import "../../node_modules/@getbase/base/scss/headings";
 
 @import 'palette';
 @import 'blockquote';
+
+// Additional Modules
+@import "../../node_modules/@getbase/base/scss/containers";
+@import "../../node_modules/@getbase/base/scss/grid";
+@import "../../node_modules/@getbase/base/scss/typography-helpers";
+@import "../../node_modules/@getbase/base/scss/display-helpers";
 
 a {
     cursor: pointer;
@@ -47,6 +50,7 @@ img {
 .box-search input, .box-search button {
     font-size: 1.8rem;
     min-height: 4rem;
+    width: 100%;
 }
 .box-search button {
     min-width: 12rem;
@@ -66,10 +70,16 @@ img {
     display: inline-block;
 }
 
+.container, .container-full {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .main {
     background-color: #fff;
 }
-
 .main h2 {
     margin: 1rem 0;
 }
@@ -77,15 +87,17 @@ img {
 .padb {
     padding-bottom: 1em;
 }
-
 .padh {
     padding-left: 1em;
     padding-right: 1em;
 }
-
 .padv {
     padding-top: 1em;
     padding-bottom: 1em;
+}
+
+.right {
+    float: right;
 }
 
 .user {

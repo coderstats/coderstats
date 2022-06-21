@@ -12,10 +12,11 @@
   },
   "scripts": {
     "build:scripts": "babel src/js --out-dir static/compiled --minified --no-comments",
-    "build:style-coder": "sass src/scss/coder.scss static/compiled/coder.css --style compressed",
-    "build:style-main": "sass src/scss/style.scss static/compiled/style.css --style compressed",
+    "build:style-coder": "sass src/scss/coder.scss:static/compiled/coder.css --style compressed",
+    "build:style-main": "sass src/scss/style.scss:static/compiled/style.css --style compressed",
     "watch:scripts": "nodemon -e js -w src/js -x 'npm run build:scripts'",
-    "watch:styles": "nodemon -e css -w src/scss -x 'npm run build:style-coder; npm run build:style-main'",
+    "watch:style-coder": "nodemon -e css -w src/scss -x 'npm run build:style-coder'",
+    "watch:style-main": "nodemon -e css -w src/scss -x 'npm run build:style-main'",
     "build": "run-p build:*",
     "watch": "run-p watch:*"
   },
@@ -30,15 +31,6 @@
     "sass": "^1.52.3"
   },
   "dependencies": {
-    "@getbase/base": "^5.2.0",
-    "@getbase/buttons": "^4.1.0",
-    "@getbase/containers": "^4.2.1",
-    "@getbase/forms": "^4.1.0",
-    "@getbase/grid": "^4.1.0",
-    "@getbase/layout-helpers": "^4.1.0",
-    "@getbase/layout-spacers": "^4.1.0",
-    "@getbase/tables": "^4.1.0",
-    "@getbase/typography": "^4.1.1",
-    "@getbase/typography-helpers": "^4.1.0"
+    "@getbase/base": "^5.2.0"
   }
 }
