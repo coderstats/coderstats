@@ -106,7 +106,7 @@ let coder = new Vue({
     },
     filters: {
         fixURL: value => {
-            if (!value.startsWith('http://') || !value.startsWith('https://')) {
+            if (!value.startsWith('http://') && !value.startsWith('https://')) {
                 value = `https://${value}`;
             }
             return value;
