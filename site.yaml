@@ -1,6 +1,6 @@
 # General settings that will be available in templates.
 site:
-    base_url: https://coderstats.net
+    base_url: https://coderstats.github.io/
     author: Ramiro Gómez
     brand: CoderStats
 

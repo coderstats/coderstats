@@ -1,6 +1,6 @@
 # README
 
-Source files for [coderstats.net](https://coderstats.net/).
+Source files for [coderstats.github.io](https://coderstats.github.io/).
 
 # GitHub API Calls
 
