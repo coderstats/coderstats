@@ -1,8 +1,10 @@
 $base-font-family: Roboto, Helvetica, sans-serif;
-$base-font-size: 17;
+$base-font-size: 18px;
+$base-line-height: 26px;
 $base-heading-font-family: Arial Black;
 $base-link-color: #0000ee;
 $base-link-hover-color: #0000ff;
+$grid-gutter: 0px;
 
 /* Import Base */
 @import "../../node_modules/@getbase/base/scss/_mixins";

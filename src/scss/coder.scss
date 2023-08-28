@@ -6,7 +6,7 @@
     color: $color1;
     font-size: .8em;
     text-align: center;
-    width: 12em;
+    flex: 1 1 9em;
 }
 
 .box-stat h4 {
@@ -17,6 +17,9 @@
 .boxes {
     background-color: $color3;
     padding: 1em 0;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
 }
 
 .boxes .box-stat:not(:last-child) {
@@ -56,11 +59,14 @@
     fill:rgb(128,177,211)
 }
 
-.meta {
-    background-color: $color4;
+// tabs
+.button {
+    border-width: 1px 1px 0 1px;
+    border-style: ridge;
+    border-color: $color5;
+    padding: 1em;
 }
 
-// tabs
 .button.active {
     background-color: $color3;
 }
